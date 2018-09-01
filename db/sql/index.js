@@ -26,7 +26,6 @@ module.exports = {
     create: sql("users/create.sql"),
     drop: sql("users/drop.sql"),
     empty: sql("users/empty.sql"),
-    init: sql("users/init.sql"),
   },
 };
 /**
