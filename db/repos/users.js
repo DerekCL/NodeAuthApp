@@ -1,6 +1,7 @@
 "use strict";
 
-let sql = require("../sql").users;
+const sql = require("../sql").users;
+const {encrypt} = require("../../config/encryption");
 
 class users_repository {
     constructor(db, pgp) {
@@ -24,8 +25,12 @@ class users_repository {
         return this.db.none(sql.empty);
     }
     // Adds a new user, and returns the new object;
-    add(name) {
-        return this.db.one(sql.add, name);
+    add(values) {
+        return this.db.one(sql.add, {
+            id: values.id,
+            username: values.username,
+            password: encrypt(values.password)
+        });
     }
     // Tries to delete a user by id, and returns the number of records deleted;
     remove(id) {

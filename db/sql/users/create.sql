@@ -8,6 +8,6 @@
 CREATE TABLE ${schema~}.users
 (
     id serial PRIMARY KEY,
-    "username" text UNIQUE,
-    "password" text,
+    username text UNIQUE,
+    password text,
 )
