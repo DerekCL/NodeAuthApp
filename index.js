@@ -8,10 +8,32 @@ const winston = require("winston");
 const expressWinston = require("express-winston");
 const helmet = require("helmet");
 const routes = require("./routes");
+const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
 
 // module configuration
 const app = express();
 const port = process.env.PORT || 9000;
+
+// Database
+const db = require("./db");
+
+// Session Configuration
+
+let sessionMiddleware = session({
+  store: new pgSession({
+    pgPromise: db,
+    tableName: "session",
+  }),
+  secret: "shhsecret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 100 * 365 * 24 * 60 * 60 * 1000, // In milliseconds
+    //  100 years = 100 * 365 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+  },
+});
+app.use(sessionMiddleware);
 
 // winston request logging
 // middleware to log your HTTP requests
