@@ -20,7 +20,7 @@ monitor.setTheme("matrix"); // Changing the default theme;
 const $DEV = process.env.NODE_ENV == "development";
 
 // Log file for database-related errors:
-const logFile = "./db_errors.log";
+const logFile = "./db/db_errors.log";
 
 /*
 // Below we are logging errors exactly the way they are reported by pg-monitor,
