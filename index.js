@@ -10,6 +10,8 @@ const helmet = require("helmet");
 const routes = require("./routes");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
+let passport = require("passport");
+let LocalStrategy = require("passport-local").Strategy;
 
 // module configuration
 const app = express();
@@ -34,6 +36,10 @@ let sessionMiddleware = session({
   },
 });
 app.use(sessionMiddleware);
+
+// Passport configuration
+app.use(passport.initialize());
+app.use(passport.session());
 
 // winston request logging
 // middleware to log your HTTP requests
@@ -76,6 +82,8 @@ app.use(
     ],
   })
 );
+
+// require("./config/passport")(passport);
 
 // starting the server
 app.listen(port, () => console.log(`started on ${port}`));
