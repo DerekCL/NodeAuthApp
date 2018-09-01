@@ -11,26 +11,24 @@ const promise = require("bluebird");
 // Loading all the database repositories separately,
 // Because event 'extend' is called multiple times:
 const repos = {
-    users: require("./repos/users")
+  users: require("./repos/users"),
 };
 
 // Pg-promise initialization options:
 const initOptions = {
+  // Use a custom promise library, instead of the default ES6 Promise:
+  promiseLib: promise,
 
-    // Use a custom promise library, instead of the default ES6 Promise:
-    promiseLib: promise,
-
-    // Extending the database protocol with custom repositories;
-    // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
-    extend: (obj)=>{
-        // With different access API.
-        // Example: obj.users = new repos.users(obj, pgp);
-        for (let r in repos) {
-            obj[r] = new repos[r](obj, pgp);
-        }
+  // Extending the database protocol with custom repositories;
+  // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
+  extend: obj => {
+    // With different access API.
+    // Example: obj.users = new repos.users(obj, pgp);
+    for (let r in repos) {
+      obj[r] = new repos[r](obj, pgp);
     }
+  },
 };
-
 
 // Load and initialize pg-promise:
 const pgp = require("pg-promise")(initOptions);
