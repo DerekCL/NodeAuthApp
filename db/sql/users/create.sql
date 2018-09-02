@@ -9,5 +9,8 @@ CREATE TABLE ${schema~}.users
 (
     id serial PRIMARY KEY,
     username text UNIQUE,
-    password text
+    password text,
+    admin boolean
+    date_added timestamp with time zone,
+    updated timestamp with time zone,
 )
