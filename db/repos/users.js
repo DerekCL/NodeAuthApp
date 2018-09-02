@@ -40,6 +40,13 @@ class users_repository {
       r => r.rowCount
     );
   }
+
+  findByToken(token) {
+    return this.db.one(sql.findByToken, {
+      token,
+    });
+  }
+
   // Tries to find a user from id;
   findById(id) {
     return this.db.oneOrNone("SELECT * FROM users WHERE id = $1", +id);
