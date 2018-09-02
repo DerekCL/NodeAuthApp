@@ -76,12 +76,8 @@ typings/
 # Serverless directories
 .serverless
 
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+### Other ###
 
+authKeys.js
 
 # End of https://www.gitignore.io/api/node,visualstudiocode
