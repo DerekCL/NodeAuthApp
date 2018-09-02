@@ -28,7 +28,7 @@ let sessionMiddleware = session({
     pgPromise: db,
     tableName: "session",
   }),
-  secret: "shhsecret",
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
   cookie: {
