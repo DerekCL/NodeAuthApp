@@ -12,6 +12,7 @@ const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 let passport = require("passport");
 let LocalStrategy = require("passport-local").Strategy;
+const cors = require("cors");
 
 // module configuration
 const app = express();
@@ -65,8 +66,20 @@ app.use(
 app.use(compression());
 app.use(helmet());
 
+// Cors configuration
+var whitelist = ["http://localhost:5000", "http://localhost:7000"];
+var corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 // routes
-app.use("/", routes);
+app.use("/", cors(corsOptions), routes);
 
 /**
  * winston error logging
