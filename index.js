@@ -10,13 +10,13 @@ const helmet = require("helmet");
 const routes = require("./routes");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
-let passport = require("passport");
-let LocalStrategy = require("passport-local").Strategy;
+const passport = require("passport");
 const cors = require("cors");
 
 // module configuration
 const app = express();
 const port = process.env.PORT || 9000;
+const passportConfig = require("./config/passport");
 
 // Database
 const db = require("./db");
@@ -99,8 +99,6 @@ app.use(
     ],
   })
 );
-
-// require("./config/passport")(passport);
 
 // starting the server
 app.listen(port, () => console.log(`started on ${port}`));
