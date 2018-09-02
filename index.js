@@ -67,7 +67,7 @@ app.use(compression());
 app.use(helmet());
 
 // Cors configuration
-var whitelist = ["http://localhost:5000", "http://localhost:7000"];
+var whitelist = ["http://localhost:5000"];
 var corsOptions = {
   origin: function(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
