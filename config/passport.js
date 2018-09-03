@@ -16,7 +16,7 @@ passport.serializeUser((user, done) => {
 });
 passport.deserializeUser((id, done) => {
   return db.users
-    .findByGoogleId(id)
+    .findBySystemId(id)
     .then(data => done(null, data))
     .catch(error => done(error));
 });

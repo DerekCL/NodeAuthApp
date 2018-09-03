@@ -52,6 +52,11 @@ class users_repository {
       google_id: values.google_id,
     });
   }
+  findBySystemId(id) {
+    return this.db.oneOrNone(sql.findByGoogleId, {
+      id,
+    });
+  }
 }
 
 module.exports = users_repository;
