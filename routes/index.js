@@ -2,9 +2,9 @@ const router = require("express").Router();
 const passport = require("passport");
 const authCheck = require("../lib/authCheck");
 
-const { googleCallback, index, logout, profile } = require("../lib/index");
+const { googleCallback, index, logout } = require("../lib/index");
 // Index route to the index page.
-router.get("/", index);
+router.get("/", authCheck, index);
 
 /**
  * Scopes of the authentication.
@@ -26,7 +26,5 @@ router.get("/logout", logout);
  * Calls back here and handles the redirection.
  **/
 router.get("/callback/google", passport.authenticate("google"), googleCallback);
-
-router.get("/profile", authCheck, profile);
 
 module.exports = router;
