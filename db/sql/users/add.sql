@@ -7,14 +7,22 @@
 
 INSERT INTO ${schema~}.users
 (
-    id,
     username,
-    password
+    google_id,
+    google_access_token,
+    google_refresh_token,
+    admin,
+    date_added,
+    updated
 )
 VALUES
 (
-    ${id},
     ${username},
-    ${password}
+    ${google_id},
+    ${google_access_token},
+    ${google_refresh_token},
+    ${admin},
+    ${date_added},
+    ${updated}
 )
 RETURNING *

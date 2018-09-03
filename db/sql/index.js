@@ -26,7 +26,7 @@ module.exports = {
     create: sql("users/create.sql"),
     drop: sql("users/drop.sql"),
     empty: sql("users/empty.sql"),
-    findByToken: sql("users/findByToken.sql"),
+    findByGoogleId: sql("users/findByGoogleId.sql"),
   },
 };
 /**
