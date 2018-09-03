@@ -53,7 +53,7 @@ class users_repository {
     });
   }
   findBySystemId(id) {
-    return this.db.oneOrNone(sql.findByGoogleId, {
+    return this.db.oneOrNone(sql.findBySystemId, {
       id,
     });
   }
