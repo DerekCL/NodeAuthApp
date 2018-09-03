@@ -14,10 +14,11 @@ const db = require("../db");
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
 passport.deserializeUser((id, done) => {
   return db.users
     .findBySystemId(id)
-    .then(data => done(null, data))
+    .then(user => done(null, user))
     .catch(error => done(error));
 });
 
@@ -36,7 +37,7 @@ passport.use(
           if (currentUser) {
             // already have this user
             console.log("user is: ", currentUser);
-            // do something
+            done(null, currentUser);
           } else {
             // if not, create user in our db
             return db.users
@@ -48,7 +49,7 @@ passport.use(
               })
               .then(newUser => {
                 console.log("created new user: ", newUser);
-                // do something
+                done(null, newUser);
               })
               .catch(err => console.log(err));
           }

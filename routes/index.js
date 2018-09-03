@@ -16,7 +16,7 @@ router.get(
 
 /** Google route that authenticates the user in our system. Calls back here and handles the redirection. */
 router.get("/callback/google", passport.authenticate("google"), (req, res) => {
-  res.send("you reached the redirect URI");
+  res.send(req.user);
 });
 
 module.exports = router;
