@@ -1,10 +1,27 @@
 const router = require("express").Router();
 const passport = require("passport");
-const authCheck = require("../lib/authCheck");
 
-const { googleCallback, index, logout } = require("../lib/index");
+const { googleCallback, index, logout, authCheck } = require("../lib/index");
+const { generateToken, sendToken } = require("../helpers/token");
+
 // Index route to the index page.
 router.get("/", authCheck, index);
+
+router.route("/auth/google/token").post(
+  passport.authenticate("google-token", { session: false }),
+  (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).send("User Not Authenticated");
+    }
+    req.auth = {
+      id: req.user.id,
+    };
+
+    next();
+  },
+  generateToken,
+  sendToken
+);
 
 /**
  * Scopes of the authentication.
