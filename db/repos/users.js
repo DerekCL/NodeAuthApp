@@ -53,9 +53,9 @@ class users_repository {
     });
   }
 
-  findByGoogleToken(id) {
+  findByGoogleToken(values) {
     return this.db.oneOrNone(sql.findByGoogleToken, {
-      id,
+      google_access_token: values.google_access_token,
     });
   }
 

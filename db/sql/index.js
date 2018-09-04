@@ -28,7 +28,7 @@ module.exports = {
     empty: sql("users/empty.sql"),
     findByGoogleId: sql("users/findByGoogleId.sql"),
     findBySystemId: sql("users/findBySystemId.sql"),
-    findByGoogleToken: sql("findByGoogleToken"),
+    findByGoogleToken: sql("users/findByGoogleToken.sql"),
   },
 };
 /**
