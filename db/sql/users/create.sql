@@ -8,6 +8,11 @@
 CREATE TABLE ${schema~}.users
 (
     id serial PRIMARY KEY,
-    username text UNIQUE,
-    password text,
+    username text,
+    google_id text,
+    google_access_token text,
+    google_refresh_token text,
+    admin boolean,
+    date_added timestamp with time zone,
+    updated timestamp with time zone
 )
