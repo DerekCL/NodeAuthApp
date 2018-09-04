@@ -17,7 +17,7 @@ const cors = require("cors");
 
 // module configuration
 const app = express();
-const port = process.env.PORT || 9000;
+const port = parseInt(process.env.PORT) || 9000;
 const passportConfig = require("./config/passport");
 
 // Database
@@ -53,6 +53,10 @@ app.use(
         json: true,
         colorize: true,
       }),
+      new winston.transports.Http({
+        port: 9900,
+        path: "/logger/winston/v1",
+      }),
     ],
     meta: true,
     msg: "HTTP {{req.method}} {{req.url}}",
@@ -79,7 +83,7 @@ var corsOption = {
 };
 app.use(cors(corsOption));
 
-app.use("/", routes);
+app.use("/auth/v1", routes);
 
 /**
  * winston error logging
@@ -91,6 +95,10 @@ app.use(
       new winston.transports.Console({
         json: true,
         colorize: true,
+      }),
+      new winston.transports.Http({
+        port: 9900,
+        path: "/logger/winston/v1",
       }),
     ],
   })
