@@ -52,6 +52,13 @@ class users_repository {
       google_id: values.google_id,
     });
   }
+
+  findByGoogleToken(id) {
+    return this.db.oneOrNone(sql.findByGoogleToken, {
+      id,
+    });
+  }
+
   findBySystemId(id) {
     return this.db.oneOrNone(sql.findBySystemId, {
       id,

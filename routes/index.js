@@ -1,7 +1,13 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const { googleCallback, index, logout, authCheck } = require("../lib/index");
+const {
+  googleCallback,
+  index,
+  logout,
+  verifyUser,
+  authCheck,
+} = require("../lib/index");
 const { generateToken, sendToken } = require("../helpers/token");
 
 // Index route to the index page.
@@ -22,6 +28,8 @@ router.route("/auth/google/token").post(
   generateToken,
   sendToken
 );
+
+router.post("/verify/user", verifyUser);
 
 /**
  * Scopes of the authentication.
