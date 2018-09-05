@@ -28,19 +28,7 @@ const body = {
   b1053e00836c67772e0c19733c8ff1163f14a2a55bb11a`,
 };
 
-describe("POST Tests", () => {
-  describe(`POST ${endpoint}`, () => {
-    it("works without errors", () => {
-      chai
-        .request(app)
-        .post(`${url}`)
-        .send(body)
-        .end((err, res) => {
-          expect(err).to.be.null;
-          expect(res).to.have.status(200);
-        });
-    });
-  });
+describe("Tests", () => {
   describe(`index`, () => {
     it("works as expected", () => {
       const req = mockReq();
