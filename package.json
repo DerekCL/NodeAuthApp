@@ -1,0 +1,74 @@
+{
+  "name": "nodeauthapp",
+  "version": "1.0.0",
+  "description": "A microservice that does authentication in node.js and express",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run start:dev",
+    "start:dev": "set NODE_ENV=development && nodemon index.js",
+    "start:prod": "node index.js",
+    "report": "nyc report --reporter=text",
+    "test": "nyc mocha --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DerekCL/NodeAuthApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DerekCL/NodeAuthApp/issues"
+  },
+  "homepage": "https://github.com/DerekCL/NodeAuthApp#readme",
+  "dependencies": {
+    "ajv": "^6.5.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "connect-pg-simple": "^5.0.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "crypto": "^1.0.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-winston": "^3.0.0",
+    "helmet": "^3.13.0",
+    "jsonwebtoken": "^8.3.0",
+    "moment-timezone": "^0.5.21",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-google-token": "^0.1.2",
+    "pg-monitor": "^1.0.0",
+    "pg-promise": "^8.4.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
+    "nyc": "^13.0.1",
+    "prettier": "^1.14.2",
+    "sinon": "^6.2.0",
+    "sinon-chai": "^3.2.0",
+    "sinon-express-mock": "^2.0.5",
+    "typescript": "^3.0.3",
+    "typescript-eslint-parser": "^18.0.0"
+  },
+  "nyc": {
+    "extension": [
+      ".js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ]
+  }
+}
