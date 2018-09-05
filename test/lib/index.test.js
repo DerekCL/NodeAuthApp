@@ -1,5 +1,6 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const { mockRes, mockReq } = require("sinon-express-mock");
 
@@ -39,10 +40,17 @@ describe("Tests", () => {
   });
   describe(`logout`, () => {
     it("works as expected", () => {
-      const req = mockReq();
+      const request = {
+        logout: sinon.spy(),
+      };
+      const req = mockReq(request);
       const res = mockRes();
       logout(req, res);
-      expect(res.status).to.be.calledWith(200);
+      expect(res.json).to.be.calledWith({
+        status: "success",
+        request_info: "signed out",
+        signed_in: false,
+      });
     });
   });
   describe(`googleCallback`, () => {
