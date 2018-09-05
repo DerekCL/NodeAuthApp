@@ -58,7 +58,12 @@ describe("Tests", () => {
       const req = mockReq();
       const res = mockRes();
       googleCallback(req, res);
-      expect(res.status).to.be.calledWith(200);
+      expect(res.json).to.be.calledWith({
+        status: "success",
+        request_info: "signed in",
+        user: req.user,
+        signed_in: false,
+      });
     });
   });
   describe(`authCheck`, () => {
