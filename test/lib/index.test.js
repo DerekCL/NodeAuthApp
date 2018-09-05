@@ -3,6 +3,7 @@ const chaiHttp = require("chai-http");
 const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const { mockRes, mockReq } = require("sinon-express-mock");
+const assert = chai.assert;
 
 const {
   index,
@@ -66,22 +67,24 @@ describe("Tests", () => {
       });
     });
   });
+  describe(`verifyUser`, () => {
+    it("works as expected", () => {
+      const request = {
+        body,
+      };
+      const req = mockReq(request);
+      const res = mockRes();
+      const next = sinon.spy();
+      assert(verifyUser(req, res, next), "");
+    });
+  });
   describe(`authCheck`, () => {
     it("works as expected", () => {
       const req = mockReq();
       const res = mockRes();
-      const next = "";
+      const next = sinon.spy();
       authCheck(req, res, next);
-      expect(res.status).to.be.calledWith(200);
-    });
-  });
-  describe(`verifyUser`, () => {
-    it("works as expected", () => {
-      const req = mockReq();
-      const res = mockRes();
-      const next = "";
-      verifyUser(req, res, next);
-      expect(res.status).to.be.calledWith(200);
+      expect(next).to.be.called;
     });
   });
 });
